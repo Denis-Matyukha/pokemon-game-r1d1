@@ -16,16 +16,16 @@ const Layout = ({ title, descr, urlBg, colorBg }) => {
             <div className={s.wrapper}>
                 <article>
                     <div className={s.title}>
-                        <h3>
-                            {title && <p>Title should be here...</p>}
-                        </h3>
+
+                            {title && <h3>{title}</h3>}
+
                         <span className={s.separator}></span>
                     </div>
 
                     <div className={cn(s.desc, s.full)}>
-                        <p>
-                            {descr && <p>Description should be here...</p>}
-                        </p>
+
+                            {descr && <p>{descr}</p>}
+
                     </div>
 
                 </article>

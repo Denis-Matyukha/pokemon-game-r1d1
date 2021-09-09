@@ -7,18 +7,27 @@ function App() {
   return (
     <div className="App">
 
-      <Header />
-
-      <Layout 
-        urlBg='./assets/bg1.jpg'
+      <Header 
+        title='Header_Title'
+        descr='Header_Description'
       />
 
       <Layout 
+        title='Layout_1__Title'
+        descr='Layout_1__Description'
+        urlBg=''
+      />
+
+      <Layout 
+        title='Layout_2__Title'
+        descr='Layout_2__Description'
         colorBg='#009688'
       />
 
       <Layout 
-        urlBg='./assets/bg2.jpg'
+        title='Layout_3__Title'
+        descr='Layout_3__Description'
+        urlBg=''
       />
 
       <Footer />
