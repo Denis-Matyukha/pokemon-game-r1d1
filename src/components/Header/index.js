@@ -6,10 +6,10 @@ const Header = ({ title, descr }) => {
             <div className={s.forest}></div>
             <div className={s.container}>
                 <h1>
-                    {title && <p>This is title</p>}
+                    {title && <p>This is temporary empty title</p>}
                 </h1>
                 <p>
-                    {descr && <p>This is Description!</p>}
+                    {descr && <p>This is temporary empty Description!</p>}
                 </p>
             </div>
         </header>
