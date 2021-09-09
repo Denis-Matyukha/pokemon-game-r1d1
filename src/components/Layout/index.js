@@ -8,14 +8,14 @@ const Layout = ({ title, descr, urlBg, colorBg }) => {
                 <article>
                     <div className={s.title}>
                         <h3>
-                            {title}
+                            {title && <p>Title should be here...</p>}
                         </h3>
                         <span className={s.separator}></span>
                     </div>
 
-                    <div className={cn('desc', 'full')}>
+                    <div className={cn(s.desc, s.full)}>
                         <p>
-                            {descr}
+                            {descr && <p>Description should be here...</p>}
                         </p>
                     </div>
 
