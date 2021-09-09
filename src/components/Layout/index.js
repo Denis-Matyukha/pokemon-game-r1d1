@@ -1,4 +1,5 @@
 import s from './style.module.css';
+import cn from 'classnames';
 
 const Layout = ({ title, descr, urlBg, colorBg }) => {
     return (
@@ -12,8 +13,7 @@ const Layout = ({ title, descr, urlBg, colorBg }) => {
                         <span className={s.separator}></span>
                     </div>
 
-                    {/* <div class="desc full">ИСПРАВИТЬ С ПРИМЕНЕНИЕМ БИБЛИОТЕКИ ДЛЯ НЕСКОЛЬКИХ ИМЕН КЛАССОВ В АТРИБУТЕ className */}
-                    <div class="desc full">
+                    <div className={cn('desc', 'full')}>
                         <p>
                             {descr}
                         </p>
