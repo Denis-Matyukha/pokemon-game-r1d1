@@ -7,10 +7,10 @@ import CardBackSide from '../../assets/card-back-side.jpg';
 
 const PokemonCard = ({type, name, img, id, values}) => {
 
-    const[isActive] = useState(true);
+    const[isActive, setActive] = useState(false);
 
     const onClickHandler = () => {
-        console.log(`pokemon ${name}`);
+        setActive(true);
     };
 
     return (
