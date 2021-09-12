@@ -1,30 +1,36 @@
 import s from './style.module.css';
 import cn from 'classnames';
 
-const Layout = ({ title, descr, urlBg, colorBg }) => {
-    
-    let styleBg = {};
+const Layout = ({ id, title, urlBg, colorBg, children }) => {
+
+    let styleOfSection = {};
 
     if (urlBg) {
-        styleBg = { backgroundImage: `url(${urlBg})` };
-    } else if (colorBg) {
-        styleBg = { background: `${colorBg}` };
+        styleOfSection.backgroundImage = `url(${urlBg})`;
+    }
+
+    if (colorBg) {
+        styleOfSection.backgroundColor = colorBg;
     }
 
     return (
-        <section className={s.root} style={styleBg}>
+        <section
+            className={s.root}
+            style={styleOfSection}
+            id={id}
+        >
             <div className={s.wrapper}>
                 <article>
                     <div className={s.title}>
 
-                            {title && <h3>{title}</h3>}
+                        {title && <h3>{title}</h3>}
 
                         <span className={s.separator}></span>
                     </div>
 
                     <div className={cn(s.desc, s.full)}>
 
-                            {descr && <p>{descr}</p>}
+                        {children}
 
                     </div>
 

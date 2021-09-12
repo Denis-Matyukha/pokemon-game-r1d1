@@ -11,28 +11,32 @@ function App() {
   return (
     <div className="App">
 
-      <Header 
-        title='Header_Title'
-        descr='Header_Description'
-      />
+      <Header
+         title='Header_Title'
+      >
+        <p>Header_Description_In_a_Child-Paragraph</p>
+      </Header>
 
-      <Layout 
-        title='Layout_1__Title'
-        descr='Layout_1__Description'
+      <Layout
         urlBg={bg2}
-      />
+        title='Layout_1__Title'
+      >
+        <p>Layout_1__Description_In_a_Child-Paragraph</p>
+      </Layout>
 
-      <Layout 
-        title='Layout_2__Title'
-        descr='Layout_2__Description'
+      <Layout
         colorBg='#009688'
-      />
+        title='Layout_2__Title'
+      >
+        <p>Layout_2__Description_In_a_Child-Paragraph</p>
+      </Layout>
 
-      <Layout 
-        title='Layout_3__Title'
-        descr='Layout_3__Description'
+      <Layout
         urlBg={bg3}
-      />
+        title='Layout_3__Title'
+      >
+        <p>Layout_3__Description_In_a_Child-Paragraph</p>
+      </Layout>
 
       <Footer />
 
