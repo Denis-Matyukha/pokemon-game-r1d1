@@ -8,7 +8,6 @@ const Header = ({ title, descr }) => {
    
                     {title && <h1>{title}</h1>}
    
-                
                     {descr && <p>{descr}</p>}
                 
             </div>
