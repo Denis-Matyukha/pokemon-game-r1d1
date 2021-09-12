@@ -183,7 +183,9 @@ function App() {
         {/* <img src={logoIMG} alt="Logo" /> */}
 
         <div className={s.flex}>
-          {POKEMONS.map(item => <PokemonCard {...item}/>)}
+          {
+            POKEMONS.map(item => <PokemonCard key={item.id} {...item}/>)
+          }
         </div>
 
       </Layout>
