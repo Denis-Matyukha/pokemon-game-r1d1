@@ -1,7 +1,7 @@
 import s from './style.module.css';
 import cn from 'classnames';
 
-import CardBackSide from './assets/card-back-side.jpg';
+import CardBackSide from '../../assets/card-back-side.jpg';
 
 const PokemonCard = ({...props}) => {
 
