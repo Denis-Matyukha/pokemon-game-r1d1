@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import cn from 'classnames';
-import LOGO from './../../assets/logo.png';
+// import LOGO from './../../assets/logo.png';
 import s from './style.module.css';
 
 const Navbar = () => {
@@ -15,11 +15,11 @@ const Navbar = () => {
         <nav className={s.root}>
             <div className={s.navWrapper}>
                 <p className={s.brand}>
-                    <img src={LOGO} alt="logo" />
+                    {/* <img src={LOGO} alt="logo" /> */}
                 </p>
-                <a className={cn(s.menuButton, {[s.active] : isActive})} href="#" onClick={onClickHandler} >
+                <div className={cn(s.menuButton, {[s.active] : isActive})} onClick={onClickHandler} >
                     <span></span>
-                </a>
+                </div>
             </div>
         </nav>
     );

@@ -1,0 +1,9 @@
+.wrap{
+    background-color: cadetblue;
+}
+.wrap, .wrap button{
+    padding: 30px;
+    margin: 30px;
+    font-size: 25px;
+    border-radius: 6px;
+}

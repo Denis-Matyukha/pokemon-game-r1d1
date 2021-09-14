@@ -8,8 +8,8 @@ const Menu = () => {
     return (
         <>
             {/* // <div className={cn(s.menuContainer, s.active / s.deactive)}> */}
-            <div className={cn(s.menuContainer, s.active)}>
-                {/* <div className={cn(s.menuContainer, s.deactive)}> */}
+            {/* <div className={cn(s.menuContainer, s.active)}> */}
+                <div className={cn(s.menuContainer, s.deactive)}>
                     <div className={s.overlay} />
                     <div className={s.menuItems}>
                         <ul>
