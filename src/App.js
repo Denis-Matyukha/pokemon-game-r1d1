@@ -8,14 +8,17 @@ import s from './style.module.css';
 
 import bg2 from './assets/bg2.jpg';
 import bg3 from './assets/bg3.jpg';
+import MenuHeader from './components/MenuHeader';
 
 function App() {
   return (
     <div className="App">
 
+      <MenuHeader/>
+
       <Header
         title='Header_Title'
-      >
+        >
         <p>Header_Description_In_a_Child-Paragraph</p>
       </Header>
 
