@@ -1,3 +1,4 @@
+import MenuHeader from '../../components/MenuHeader';
 import s from './style.module.css';
 
 const GamePage = ({ onChangePage }) => {
@@ -8,9 +9,10 @@ const GamePage = ({ onChangePage }) => {
 
     return (
         <>
+            <MenuHeader bgActive/>
             <div className={s.wrap}>
                 this is Game Page component.
-                <button onClick={gameBtnHandler}>
+                <button className={s.gameBackBtn} onClick={gameBtnHandler}>
                     ← Back to Home Page
                 </button>
             </div>

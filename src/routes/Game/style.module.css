@@ -1,9 +1,20 @@
 .wrap{
     background-color: cadetblue;
 }
-.wrap, .wrap button{
-    padding: 30px;
-    margin: 30px;
-    font-size: 25px;
-    border-radius: 6px;
+.wrap {
+    padding-top: 20px;
 }
+.wrap, .wrap button {
+    position: relative;
+    top: 20vh;
+    margin: 0 auto;
+    width: 50vw;
+    font-size: 25px;
+    text-align: center;
+}
+.gameBackBtn {
+    font-size: 20px !important;
+    width: 30vw !important;
+    border-radius: 20px;
+    padding: 30px;
+}  
