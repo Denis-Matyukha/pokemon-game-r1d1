@@ -1,27 +1,36 @@
+import { Link } from 'react-router-dom';
 import cn from 'classnames';
-
 import s from './style.module.css';
 
 const MENU = [
     {
         title: 'HOME',
-        to: '#welcome',
+        to: 'welcome',
     },
     {
         title: 'GAME',
-        to: '#game',
+        to: 'game',
     },
     {
         title: 'ABOUT',
-        to: '#about',
+        to: 'about',
     },
     {
         title: 'CONTACT',
-        to: '#contact',
+        to: 'contact',
     },
 ]
 
-const Menu = ({ isOpen }) => {
+const Menu = ({ isOpen , onClickHandler}) => {
+
+    /*
+    Нужна ли тут, в самом низко-уровневом компоненте,
+    в <Link/> или <Menu>
+    Проверка на наличие prop-са onClickHandler ??
+
+    p.s.
+    Он служит для сокрытия анимации меню при переходе по ссылке
+    */
 
     return (
         <>
@@ -37,9 +46,10 @@ const Menu = ({ isOpen }) => {
                         {
                             MENU.map(({ title, to }, index) => (
                                 <li key={index}>
-                                    <a href={to}>
+                                    <Link to={to} onClick={onClickHandler}>
                                         {title}
-                                    </a>
+                                    </Link>
+                                    
                                 </li>
                             ))
                         }
