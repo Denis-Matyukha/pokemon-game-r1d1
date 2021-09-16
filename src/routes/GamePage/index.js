@@ -5,41 +5,28 @@ import POKEMONS from '../../pokemons';
 import s from './style.module.css';
 
 
-
+// делаю полную копию массива объектов POKEMONS для дальнейшей работы без мутаций ↓
 let pokemonsInGame = JSON.parse(JSON.stringify(POKEMONS));
-    pokemonsInGame.forEach(item => item.active = false);
+// в скопированном массиве добавляю каждому элементу дополнительное свойство "active" ↓   
+pokemonsInGame.forEach(item => item.active = false);
 
-    console.log(` pokemonsInGame ↓ `);
-    console.log(pokemonsInGame);
-    console.log(``);
-    console.log(` POKEMONS ↓ `);
-    console.log(POKEMONS);
+const GamePage = () => {
 
-const GamePage = ({ onChangePage }) => {
+    const [activePokemons, setActivePokemons] = useState(pokemonsInGame);
 
-    const [pokemonGamers, setPokemonGamers] = useState(pokemonsInGame);
-
-    console.log(``);
-    console.log(`↓ state ↓ pokemonGamers ↓`);
-    console.log(pokemonGamers);
-    console.log(``);
-    console.log(`↓ state ↓ pokemonGamers[id[25]] ↓`);
-    console.log(pokemonGamers.filter(item => item.id === 25));
+    const toggleActivePokemon = (pokeId) => {        
+        let clickedPokemon = activePokemons.filter(item => item.id === pokeId)[0];
+        !clickedPokemon.active ? clickedPokemon.active = true : clickedPokemon.active = false;
+        // ↑ так как это действие привело к изменению массива [activePokemons], 
+        // то этим массивом обновляем state ↓
+        setActivePokemons(activePokemons);
+        
+        console.log(` #### Updated State [pokemonGamers] ↓ `);
+        console.table(activePokemons);
+    }
 
     const history = useHistory();
-    const gameBtnHandler = () => {
-        history.push('/');
-    }
-    
-    // const onClickHandler = (e) => {
-    //     console.log(` e `);
-    //     console.log(e);
-    // }
-    
-    const idTransferHandler = (pokeId) => {        
-            console.log(` pokeId `);
-            console.log(pokeId);
-    }
+    const gameBtnHandler = () => { history.push('/') }
 
     return (
         <>
@@ -57,7 +44,7 @@ const GamePage = ({ onChangePage }) => {
                                 type={type}
                                 values={values} 
                                 active={active}
-                                idTransfer={idTransferHandler}
+                                idTransfer={toggleActivePokemon}
                             />)
                     })
                 }
