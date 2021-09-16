@@ -9,7 +9,7 @@ const GamePage = ({ onChangePage }) => {
 
     return (
         <>
-            <MenuHeader bgActive/>
+            {/* <MenuHeader bgActive/> */}
             <div className={s.wrap}>
                 this is Game Page component.
                 <button className={s.gameBackBtn} onClick={gameBtnHandler}>

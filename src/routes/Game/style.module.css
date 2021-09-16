@@ -6,11 +6,12 @@
 }
 .wrap, .wrap button {
     position: relative;
-    top: 20vh;
+    top: 5vh;
     margin: 0 auto;
     width: 50vw;
     font-size: 25px;
     text-align: center;
+    border-radius: 20px;
 }
 .gameBackBtn {
     font-size: 20px !important;
