@@ -1,13 +1,20 @@
+import { useState } from 'react';
+
 import Menu from '../Menu';
 import Navbar from '../Navbar';
-// import s from './style.module.css';
 
-const MenuHeader = () => {
+const MenuHeader = ({ bgActive }) => {
+
+    const [isOpen, setOpen] = useState(null);
+
+    const handleClickHamburg = () => {
+        setOpen(prevState => !prevState);
+    }
 
     return (
         <>
-            <Menu/>
-            <Navbar/>
+            <Menu isOpen={isOpen} />
+            <Navbar isOpen={isOpen} bgActive={bgActive} onClickHamburg={handleClickHamburg}/>
         </>
     );
 

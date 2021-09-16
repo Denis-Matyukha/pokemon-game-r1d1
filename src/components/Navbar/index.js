@@ -1,24 +1,23 @@
-import { useState } from 'react';
 import cn from 'classnames';
-// import LOGO from './../../assets/logo.png';
 import s from './style.module.css';
 
-const Navbar = () => {
-
-    const [isActive, setActive] = useState(false);
-
-    const onClickHandler = () => {
-        setActive(prevValue => !prevValue);
-    }
+const Navbar = ({ isOpen, bgActive = false, onClickHamburg }) => {
 
     return (
-        <nav className={s.root}>
+        <nav id={s.navbar} className={cn(s.root, {
+            [s.bgActive]: bgActive
+        })}>
+
             <div className={s.navWrapper}>
                 <p className={s.brand}>
-                    {/* <img src={LOGO} alt="logo" /> */}
+                    LOGO
                 </p>
-                <div className={cn(s.menuButton, {[s.active] : isActive})} onClick={onClickHandler} >
-                    <span></span>
+                <div className={cn(s.menuButton, {
+                     [s.active]: isOpen
+                     })}
+                     onClick={onClickHamburg}
+                >
+                    <span />
                 </div>
             </div>
         </nav>

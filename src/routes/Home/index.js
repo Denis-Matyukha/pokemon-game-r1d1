@@ -13,7 +13,6 @@ import MenuHeader from '../../components/MenuHeader';
 function HomePage({ onChangePage }) {
 
     const handleHeaderClickButton = (page) => {
-        console.log(`<HomePage/>`);
         onChangePage && onChangePage(page);
     }
 
@@ -23,10 +22,10 @@ function HomePage({ onChangePage }) {
             <MenuHeader />
 
             <Header
-                title='Header_Title'
+                title='Pokemon Game'
                 onClickButton={handleHeaderClickButton}
             >
-                <p>Header_Description_In_a_Child-Paragraph</p>
+                <p>This is simple triple triad card game</p>
             </Header>
 
             <Layout

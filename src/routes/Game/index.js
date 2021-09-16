@@ -1,9 +1,9 @@
 import s from './style.module.css';
 
-const GamePage = ({backToHomeHandler}) => {
+const GamePage = ({ onChangePage }) => {
 
     const gameBtnHandler = () => {
-        backToHomeHandler && backToHomeHandler('home')
+        onChangePage && onChangePage('app')
     }
 
     return (
