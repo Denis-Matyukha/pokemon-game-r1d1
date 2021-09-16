@@ -17,7 +17,7 @@ const Navbar = ({ isOpen, bgActive = false, onClickHamburg }) => {
                      })}
                      onClick={onClickHamburg}
                 >
-                    <span />
+                    <span></span>
                 </div>
             </div>
         </nav>

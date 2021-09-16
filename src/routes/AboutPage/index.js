@@ -1,17 +1,17 @@
 import { useHistory } from 'react-router-dom';
 import s from './style.module.css';
 
-const GamePage = ({ onChangePage }) => {
+const AboutPage = ({ onChangePage }) => {
     const history = useHistory();
-    const gameBtnHandler = () => {
+    const onClickHandler = () => {
         history.push('/');
     }
 
     return (
         <>
             <div className={s.wrap}>
-                this is Game Page component.
-                <button className={s.gameBackBtn} onClick={gameBtnHandler}>
+                this is About Page component.
+                <button className={s.backBtn} onClick={onClickHandler}>
                     ← Back to Home Page
                 </button>
             </div>
@@ -19,4 +19,4 @@ const GamePage = ({ onChangePage }) => {
     );
 };
 
-export default GamePage;
+export default AboutPage;

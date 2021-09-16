@@ -1,5 +1,5 @@
 .wrap{
-    background-color: cadetblue;
+    background-color: rgb(158, 0, 0);
 }
 .wrap {
     padding-top: 20px;
@@ -13,7 +13,12 @@
     text-align: center;
     border-radius: 20px;
 }
-.gameBackBtn {
+.wrap {
+    top: 25vh;
+    font-size: 35px !important;
+    color: rgb(255, 255, 255);
+}
+.backBtn {
     font-size: 20px !important;
     width: 30vw !important;
     border-radius: 20px;

@@ -19,7 +19,7 @@ const MENU = [
         title: 'CONTACT',
         to: 'contact',
     },
-]
+];
 
 const Menu = ({ isOpen , onClickHandler}) => {
 
