@@ -1,29 +1,25 @@
 import { useHistory } from 'react-router-dom';
-import { useState } from 'react'; 
+import { useState } from 'react';
 import PokemonCard from '../../components/PokemonCard';
 import POKEMONS from '../../pokemons';
 import s from './style.module.css';
 
-
-// делаю полную копию массива объектов POKEMONS для дальнейшей работы без мутаций ↓
 let pokemonsInGame = JSON.parse(JSON.stringify(POKEMONS));
-// в скопированном массиве добавляю каждому элементу дополнительное свойство "active" ↓   
 pokemonsInGame.forEach(item => item.active = false);
 
 const GamePage = () => {
 
     const [activePokemons, setActivePokemons] = useState(pokemonsInGame);
 
-    const toggleActivePokemon = (pokeId) => {        
-        let clickedPokemon = activePokemons.filter(item => item.id === pokeId)[0];
-        !clickedPokemon.active ? clickedPokemon.active = true : clickedPokemon.active = false;
-        // ↑ так как это действие привело к изменению массива [activePokemons], 
-        // то этим массивом обновляем state ↓
+       const toggleActivePokemon = (pokeId) => {
+        activePokemons.map(item => {
+            if (item.id === pokeId) {
+                item.active = !item.active;
+            }
+            return item;
+        });
         setActivePokemons(activePokemons);
-        
-        console.log(` #### Updated State [pokemonGamers] ↓ `);
-        console.table(activePokemons);
-    }
+    };
 
     const history = useHistory();
     const gameBtnHandler = () => { history.push('/') }
@@ -31,9 +27,9 @@ const GamePage = () => {
     return (
         <>
             <div id="test" className={s.flex}>
-                
+
                 {
-                    pokemonsInGame.map(({ name, id, img, type, values, active}) => {
+                    pokemonsInGame.map(({ name, id, img, type, values, active }) => {
 
                         return (
                             <PokemonCard
@@ -42,7 +38,7 @@ const GamePage = () => {
                                 id={id}
                                 img={img}
                                 type={type}
-                                values={values} 
+                                values={values}
                                 active={active}
                                 idTransfer={toggleActivePokemon}
                             />)
