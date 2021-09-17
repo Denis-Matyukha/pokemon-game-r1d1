@@ -5,11 +5,12 @@ import cn from 'classnames';
 
 import CardBackSide from '../../assets/card-back-side.jpg';
 
-const PokemonCard = ({ type, name, img, id, values }) => {
+const PokemonCard = ({ type, name, img, id, values, active , idTransfer}) => {
 
-    const [isActive, setActive] = useState(false);
+    const [isActive, setActive] = useState(active);
 
     const onClickHandler = () => {
+        idTransfer && idTransfer(id);
         isActive ? setActive(false) : setActive(true);
     };
 

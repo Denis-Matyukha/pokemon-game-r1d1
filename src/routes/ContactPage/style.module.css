@@ -1,0 +1,21 @@
+.wrap{
+    background-color: rgb(255, 251, 32);
+}
+.wrap {
+    padding-top: 20px;
+}
+.wrap, .wrap button {
+    position: relative;
+    top: 5vh;
+    margin: 0 auto;
+    width: 50vw;
+    font-size: 25px;
+    text-align: center;
+    border-radius: 20px;
+}
+.backBtn {
+    font-size: 20px !important;
+    width: 30vw !important;
+    border-radius: 20px;
+    padding: 30px;
+}  
