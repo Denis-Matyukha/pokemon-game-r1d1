@@ -108,8 +108,11 @@ const GamePage = () => {
                 }
             }
         };
-        let newPokemon = getNewPokemon();
-        let newPokemonCard = {[`${newKey}`]: { ...newPokemon }};
+        let data = getNewPokemon();
+
+        database.ref('pokemons/' + newKey).set(data);
+
+        // let newPokemonCard = {[`${newKey}`]: { ...newPokemon }};
         // console.log(`TSK_3 ↓`);
         // console.log(newPokemonCard);
         // console.log({newPokemonCard});
@@ -118,7 +121,14 @@ const GamePage = () => {
         // console.log({...{[`${newKey}`]: { ...newPokemon }}});
         // console.log({newPokemonCard});
         // console.log(`!_TSK_3_!   ↑`);
-        return {...{[`${newKey}`]: { ...newPokemon }}};
+        // return {...{[`${newKey}`]: { ...newPokemon }}};
+
+        database.ref('pokemons').once('value', (snapshot) => {
+            console.log(`  UseEffect сработал  и snapshot.val() принимает вид ↓`);
+            console.log(snapshot.val());
+            setActivePokemons(snapshot.val());
+        });
+        
     };
 
 return (
