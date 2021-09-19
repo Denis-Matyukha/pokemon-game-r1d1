@@ -24,10 +24,14 @@ const PokemonCard = ({ type, name, img, id, values, active , idTransfer}) => {
                         <div className={cn(s.wrap, s.front)}>
                             <div className={cn(s.pokemon, s[type])}>
                                 <div className={s.values}>
-                                    <div className={cn(s.count, s.top)}>{values.top}</div>
-                                    <div className={cn(s.count, s.right)}>{values.right}</div>
-                                    <div className={cn(s.count, s.bottom)}>{values.bottom}</div>
-                                    <div className={cn(s.count, s.left)}>{values.left}</div>
+                                    <div className={cn(s.count, s.top)}>{values && values.top}</div>
+                                    {/* <div className={cn(s.count, s.top)}>{values && values.top && values.top}</div> */}
+                                    <div className={cn(s.count, s.right)}>{values && values.right}</div>
+                                    {/* <div className={cn(s.count, s.right)}>{values && values.right && values.right}</div> */}
+                                    <div className={cn(s.count, s.bottom)}>{values && values.bottom}</div>
+                                    {/* <div className={cn(s.count, s.bottom)}>{values && values.bottom && values.bottom}</div> */}
+                                    <div className={cn(s.count, s.left)}>{values && values.left}</div>
+                                    {/* <div className={cn(s.count, s.left)}>{values && values.left && values.left}</div> */}
                                 </div>
                                 <div className={s.imgContainer}>
                                     <img src={img} alt={name} />
