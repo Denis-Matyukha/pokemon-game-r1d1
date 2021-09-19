@@ -1,24 +1,36 @@
 import { useHistory } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PokemonCard from '../../components/PokemonCard';
-import POKEMONS from '../../pokemons';
+
+import database from '../../service/firebase';
+
 import s from './style.module.css';
 
-let pokemonsInGame = JSON.parse(JSON.stringify(POKEMONS));
-pokemonsInGame.forEach(item => item.active = false);
 
 const GamePage = () => {
 
-    const [activePokemons, setActivePokemons] = useState(pokemonsInGame);
+    let [activePokemons, setActivePokemons] = useState({});
 
-       const toggleActivePokemon = (pokeId) => {
-        activePokemons.map(item => {
-            if (item.id === pokeId) {
-                item.active = !item.active;
-            }
-            return item;
+    useEffect(() => {
+        database.ref('pokemons').once('value', (snapshot) => {
+            console.log(`  UseEffect сработал  `);
+            console.log(snapshot.val());
+                setActivePokemons(snapshot.val());
         });
-        setActivePokemons(activePokemons);
+    }, []);
+
+
+    const toggleActivePokemon = (pokeId) => {
+        setActivePokemons(prevState => {
+            return Object.entries(prevState).reduce((acc, item) => {
+                const pokemon = { ...item[1] };
+                if (pokemon.id === pokeId) {
+                    pokemon.active = true;
+                };
+                acc[item[0]] = pokemon;
+                return acc;
+            }, {});
+        });
     };
 
     const history = useHistory();
@@ -29,11 +41,11 @@ const GamePage = () => {
             <div id="test" className={s.flex}>
 
                 {
-                    pokemonsInGame.map(({ name, id, img, type, values, active }) => {
+                    Object.entries(activePokemons).map(([key, { name, id, img, type, values, active }]) => {
 
                         return (
                             <PokemonCard
-                                key={id}
+                                key={key}
                                 name={name}
                                 id={id}
                                 img={img}
