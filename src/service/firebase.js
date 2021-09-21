@@ -27,6 +27,10 @@ class Firebase {
         });
     }
 
+    offPokemonSoket = () => {
+        this.database.ref('pokemons').off()
+    }
+
     getPokemonsViaDataBase = async () => {
         return await this.database.ref('pokemons').once('value').then(snapshot => snapshot.val());
     }
