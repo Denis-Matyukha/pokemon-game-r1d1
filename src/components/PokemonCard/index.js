@@ -18,7 +18,7 @@ const PokemonCard = ({ type, name, img, id, values, active , idTransfer}) => {
         <>
             <div className={s.root} onClick={onClickHandler}>
 
-                <div className={cn(s.pokemonCard, { [s.active]: isActive })}>
+                <div className={cn(s.pokemonCard, { [s.active]: active })}>
 
                     <div className={s.cardFront}>
                         <div className={cn(s.wrap, s.front)}>

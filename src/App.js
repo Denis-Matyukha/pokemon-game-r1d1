@@ -1,5 +1,5 @@
 import { useRouteMatch, Route, Switch, Redirect } from "react-router-dom";
-import { useState } from 'react';
+// import { useState } from 'react';
 import cn from 'classnames';
 import Footer from "./components/Footer";
 import MenuHeader from "./components/MenuHeader";
@@ -8,21 +8,25 @@ import HomePage from "./routes/HomePage";
 import AboutPage from "./routes/AboutPage";
 import ContactPage from "./routes/ContactPage";
 import NotFoundPage from "./routes/NotFound";
-import { TestContext } from "./context/testContext";
+
+// import { TestContext } from "./context/testContext";
+
+import { FireBaseContext } from "./context/firebaseContext";
+import Firebase from "./service/firebase";
+
 import s from './style.module.css';
 
 const App = () => {
-  const [theme, setTheme] = useState('light_!');
+
+  // const [theme, setTheme] = useState('light_!');
+
   const match = useRouteMatch('/');
 
-  const handlerChangeTheme = val => setTheme(val);
+  // const handlerChangeTheme = val => setTheme(val);
 
   return (
     <>
-      <TestContext.Provider value={{
-        theme,
-        onChangeTheme: handlerChangeTheme
-      }}>
+      <FireBaseContext.Provider value={new Firebase()}>
 
         <Switch>
           <Route path="/404" component={NotFoundPage} />
@@ -47,7 +51,8 @@ const App = () => {
             </>
           </Route>
         </Switch>
-      </TestContext.Provider>
+
+      </FireBaseContext.Provider>
     </>
   )
 };
