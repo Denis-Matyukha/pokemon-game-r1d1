@@ -1,6 +1,5 @@
-import React from 'react';
 import { useRouteMatch, Route, Switch, Redirect } from "react-router-dom";
-
+import { useState } from 'react';
 import cn from 'classnames';
 import Footer from "./components/Footer";
 import MenuHeader from "./components/MenuHeader";
@@ -9,19 +8,20 @@ import HomePage from "./routes/HomePage";
 import AboutPage from "./routes/AboutPage";
 import ContactPage from "./routes/ContactPage";
 import NotFoundPage from "./routes/NotFound";
-// import { TestContext } from "./context/testContext";
+import { TestContext } from "./context/testContext";
 import s from './style.module.css';
 
-
-export const TestContext = React.createContext(null);
-
 const App = () => {
-
+  const [theme, setTheme] = useState('light_!');
   const match = useRouteMatch('/');
+
+  const handlerChangeTheme = val => setTheme(val);
+
   return (
     <>
       <TestContext.Provider value={{
-        theme: 'light'
+        theme,
+        onChangeTheme: handlerChangeTheme
       }}>
 
         <Switch>
