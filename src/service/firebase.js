@@ -22,7 +22,6 @@ class Firebase {
 
     getPokemonSoket = (cb) => {
         this.database.ref('pokemons').on('value', (snapshot) => {
-            console.log(`THE_getPokemonSoket_is_totally_ON_!`);
             cb(snapshot.val());
         });
     }
@@ -39,7 +38,7 @@ class Firebase {
         this.database.ref(`pokemons/${key}`).set(pokemon);
     }
 
-    addRandomPokemon = (cb = () => {console.log(`empty CallBack`);}) => {
+    addRandomPokemon = (cb) => {
             const getRandom = n => Math.ceil(Math.random() * n);
             const newKey = this.database.ref().child('pokemons').push().key;
             const getNewPokemon = () => {
@@ -77,11 +76,5 @@ class Firebase {
             this.database.ref('pokemons/' + newKey).set(data).then(() => cb());
     }
 }
-
-// export const fire = firebase;
-
-// export const database = fire.database();
-
-// export default database;
 
 export default Firebase;

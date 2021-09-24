@@ -1,24 +1,11 @@
-// import { useContext, useEffect } from 'react';
 import { useContext } from 'react';
-// import { useLocation } from "react-router-dom";
 import PokemonCard from '../../../../components/PokemonCard';
 import { PokemonContext } from '../../../../context/pokemonContext';
 import s from './style.module.css';
 
-
-// const location = useLocation();
-// const isPadding = location.pathname === '/' || location.pathname === '/game/board';
-
 const BoardPage = () => {
 
     let { pokemons } = useContext(PokemonContext);
-
-    console.log(`On Board Context of ${Object.keys(pokemons).length} pokemons→`,pokemons);
-
-    // useEffect(() => {
-
-    // }, []);
-
 
     return (
         <div className={s.root}>

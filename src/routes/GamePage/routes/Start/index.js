@@ -17,7 +17,6 @@ const StartPage = () => {
     let [pokemons, setPokemons] = useState({});
 
     useEffect(() => {
-        // pokemonsContext.pokemons = {}; cb need!
         firebase.getPokemonSoket((pokemons) => {
             setPokemons(pokemons);
         });
@@ -35,21 +34,17 @@ const StartPage = () => {
                 selected: !prevState[key].selected,
             }
         }))
-    }
+    };
 
     const gameBtnHandler = () => { history.push('/') };
 
     const handleAddRandomPokemon = () => {
         firebase.addRandomPokemon()
-    }
+    };
 
     const handleStartGameClick = () => {
         history.push('/game/board');
-    }
-
-
-    
-    console.log(`NOW at START, context of ${Object.keys(pokemonsContext.pokemons).length} pokemons → `, pokemonsContext.pokemons);
+    };
     
     return (
         <>
@@ -81,12 +76,9 @@ const StartPage = () => {
                                 values={values}
                                 isActive={true}
                                 isSelected={selected}
-                                // idTransfer={onClickHandler}
                                 onClickCard={() => { 
                                     if (Object.keys(pokemonsContext.pokemons).length < 5 || selected) {
-                                        console.log(`Object.keys(pokemonsContext.pokemons).length`,Object.keys(pokemonsContext.pokemons).length);
                                         handleChangeSelected(key) 
-                                        console.log(`Object.keys(pokemonsContext.pokemons).length`,Object.keys(pokemonsContext.pokemons).length);
                                     }
                                 }}
                             />)
