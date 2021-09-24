@@ -1,59 +1,42 @@
-import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
-import PokemonCard from '../../components/PokemonCard';
-import POKEMONS from '../../pokemons';
-import s from './style.module.css';
-
-let pokemonsInGame = JSON.parse(JSON.stringify(POKEMONS));
-pokemonsInGame.forEach(item => item.active = false);
+import { useRouteMatch, Switch, Route } from 'react-router-dom';
+import { PokemonContext } from '../../context/pokemonContext';
+import BoardPage from './routes/Board';
+import FinishPage from './routes/Finish';
+import StartPage from './routes/Start';
 
 const GamePage = () => {
+    
+    const [selectedPokemons, setSelectedPokemons] = useState({});
 
-    const [activePokemons, setActivePokemons] = useState(pokemonsInGame);
+    const match = useRouteMatch();
 
-       const toggleActivePokemon = (pokeId) => {
-        activePokemons.map(item => {
-            if (item.id === pokeId) {
-                item.active = !item.active;
+    const handleSelectedPokemons = (key, pokemon) => {
+
+        setSelectedPokemons(prevState => {
+            if(prevState[key]) {
+                const copyState = {...prevState};
+                delete copyState[key];
+                return copyState;
             }
-            return item;
-        });
-        setActivePokemons(activePokemons);
-    };
-
-    const history = useHistory();
-    const gameBtnHandler = () => { history.push('/') }
+            return {
+                ...prevState,
+                [key]: pokemon,
+            }
+        })
+    }
 
     return (
-        <>
-            <div id="test" className={s.flex}>
-
-                {
-                    pokemonsInGame.map(({ name, id, img, type, values, active }) => {
-
-                        return (
-                            <PokemonCard
-                                key={id}
-                                name={name}
-                                id={id}
-                                img={img}
-                                type={type}
-                                values={values}
-                                active={active}
-                                idTransfer={toggleActivePokemon}
-                            />)
-                    })
-                }
-
-            </div>
-
-            <div className={s.wrap}>
-                this is Game Page component.
-                <button className={s.gameBackBtn} onClick={gameBtnHandler}>
-                    ← Back to Home Page
-                </button>
-            </div>
-        </>
+        <PokemonContext.Provider value={{
+            pokemons: selectedPokemons,
+            onSelectedPokemons: handleSelectedPokemons
+        }}>
+            <Switch>
+                <Route path={`${match.path}/`} exact component={StartPage} />
+                <Route path={`${match.path}/board`} component={BoardPage} />
+                <Route path={`${match.path}/finish`} component={FinishPage} />
+            </Switch>
+        </PokemonContext.Provider>
     );
 };
 
