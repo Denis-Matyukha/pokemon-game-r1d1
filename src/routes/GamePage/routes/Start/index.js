@@ -4,39 +4,31 @@ import PokemonCard from '../../../../components/PokemonCard';
 
 import s from './style.module.css';
 import { FireBaseContext } from '../../../../context/firebaseContext';
+import { PokemonContext } from '../../../../context/pokemonContext';
 
 const StartPage = () => {
 
-    const firebase = useContext(FireBaseContext)
+    const firebase = useContext(FireBaseContext);
 
-    let [activePokemons, setActivePokemons] = useState({});
+    let pokemonsContext = useContext(PokemonContext);
+
+    const history = useHistory();
+
+    let [pokemons, setPokemons] = useState({});
 
     useEffect(() => {
+        // pokemonsContext.pokemons = {}; cb need!
         firebase.getPokemonSoket((pokemons) => {
-            setActivePokemons(pokemons);
+            setPokemons(pokemons);
         });
 
         return () => firebase.offPokemonSoket();
     }, []);
 
-
-    // const onClickHandler = (pokeId) => {
-        // setActivePokemons(prevState => {
-        //     return Object.entries(prevState).reduce((acc, item) => {
-        //         const key = item[0];
-        //         const pokemon = { ...item[1] };
-        //         if (pokemon.id === pokeId) {
-        //             !pokemon.active ? pokemon.active = true : pokemon.active = false;
-        //             firebase.addPokemon(item[0], pokemon);
-        //         };
-        //         acc[item[0]] = pokemon;
-        //         return acc;
-        //     }, {});
-        // });
-    // };
-
     const handleChangeSelected = (key) => {
-        setActivePokemons(prevState => ({
+        const pokemon = { ...pokemons[key] };
+        pokemonsContext.onSelectedPokemons(key, pokemon);
+        setPokemons(prevState => ({
             ...prevState,
             [key]: {
                 ...prevState[key],
@@ -45,24 +37,38 @@ const StartPage = () => {
         }))
     }
 
-    const history = useHistory();
     const gameBtnHandler = () => { history.push('/') };
 
-    // const handleAddRandomPokemon = () => {
-    //     firebase.addRandomPokemon()
-    // }
+    const handleAddRandomPokemon = () => {
+        firebase.addRandomPokemon()
+    }
 
+    const handleStartGameClick = () => {
+        history.push('/game/board');
+    }
+
+
+    
+    console.log(`NOW at START, context of ${Object.keys(pokemonsContext.pokemons).length} pokemons → `, pokemonsContext.pokemons);
+    
     return (
         <>
-            <button className={s.addBtn}>
+            <button className={s.addBtn} onClick={handleAddRandomPokemon}>
+                Add Random Pokemon
+            </button>
+
+            <button 
+                className={s.addBtn} 
+                onClick={handleStartGameClick}
+                disabled={Object.keys(pokemonsContext.pokemons).length < 5}
+            >
                 Start Game
             </button>
 
             <div id="test" className={s.flex}>
 
                 {
-                    // Object.entries(activePokemons).map(([key, { name, id, img, type, values, active, selected }]) => {
-                    Object.entries(activePokemons).map(([key, { name, id, img, type, values, selected }]) => {
+                    Object.entries(pokemons).map(([key, { name, id, img, type, values, selected }]) => {
 
                         return (
                             <PokemonCard
@@ -73,10 +79,16 @@ const StartPage = () => {
                                 img={img}
                                 type={type}
                                 values={values}
-                                active={true}
+                                isActive={true}
                                 isSelected={selected}
                                 // idTransfer={onClickHandler}
-                                onClickCard={()=>{handleChangeSelected(key)}}
+                                onClickCard={() => { 
+                                    if (Object.keys(pokemonsContext.pokemons).length < 5 || selected) {
+                                        console.log(`Object.keys(pokemonsContext.pokemons).length`,Object.keys(pokemonsContext.pokemons).length);
+                                        handleChangeSelected(key) 
+                                        console.log(`Object.keys(pokemonsContext.pokemons).length`,Object.keys(pokemonsContext.pokemons).length);
+                                    }
+                                }}
                             />)
                     })
                 }
