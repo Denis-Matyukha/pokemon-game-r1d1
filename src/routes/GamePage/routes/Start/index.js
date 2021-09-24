@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react';
 import PokemonCard from '../../../../components/PokemonCard';
 
 import s from './style.module.css';
+
 import { FireBaseContext } from '../../../../context/firebaseContext';
 import { PokemonContext } from '../../../../context/pokemonContext';
 
